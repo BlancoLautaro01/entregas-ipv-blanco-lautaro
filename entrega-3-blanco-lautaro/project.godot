@@ -14,7 +14,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Proyecto Godot - Clase 4"
+config/name="entrega-3-blanco-lautaro"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
