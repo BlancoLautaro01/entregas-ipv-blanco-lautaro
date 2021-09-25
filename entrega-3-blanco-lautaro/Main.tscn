@@ -27,7 +27,6 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 413.003, 395.272 )
 collision_layer = 1
-collision_mask = 1
 JUMP_SPEED = -200.0
 GRAVITY = 10.0
 

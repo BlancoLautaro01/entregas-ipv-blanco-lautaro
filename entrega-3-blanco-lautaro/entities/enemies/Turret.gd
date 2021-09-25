@@ -23,7 +23,7 @@ func fire_at_target():
 
 func _on_DectectionArea_body_entered(body):
 	if target == null:
-		target = body 
+		target = body
 		fire_timer.start()
 
 func _on_DectectionArea_body_exited(body):
