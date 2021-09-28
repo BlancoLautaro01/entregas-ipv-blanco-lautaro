@@ -22,13 +22,11 @@ func fire_at_target():
 	proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
 
 func _on_DectectionArea_body_entered(body):
-	print("entered")
 	if target == null:
 		target = body
 		fire_timer.start()
 
 func _on_DectectionArea_body_exited(body):
-	print("exited")
 	if target == body:
 		fire_timer.stop()
 		target = null
