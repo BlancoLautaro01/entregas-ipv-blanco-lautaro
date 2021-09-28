@@ -5,7 +5,7 @@
 [ext_resource path="res://entities/enemies/TurretProjectile.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 732.038
+radius = 252.097
 
 [node name="Turret" type="Sprite"]
 texture = ExtResource( 1 )
@@ -18,7 +18,7 @@ projectile_scene = ExtResource( 3 )
 position = Vector2( 0, -30.0339 )
 
 [node name="DectectionArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DectectionArea"]
@@ -26,3 +26,4 @@ position = Vector2( 0, -4.57324 )
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="DectectionArea" to="." method="_on_DectectionArea_body_entered"]
+[connection signal="body_exited" from="DectectionArea" to="." method="_on_DectectionArea_body_exited"]
