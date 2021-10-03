@@ -21,8 +21,6 @@ projectile_scene = ExtResource( 3 )
 [node name="FireTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="IdleTimer" type="Timer" parent="."]
-
 [node name="FirePosition" type="Position2D" parent="."]
 position = Vector2( 9.6885, -4.9261 )
 

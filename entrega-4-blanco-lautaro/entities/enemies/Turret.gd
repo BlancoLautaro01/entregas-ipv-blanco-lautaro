@@ -11,15 +11,9 @@ export (PackedScene) var projectile_scene
 var target
 var projectile_container
 
-var pathfinding:PathfindAstar
-
-var path:Array = []
-var velocity
-
 func _ready():
 	fire_timer.connect("timeout", self, "fire")
 	set_physics_process(false)
-	idle_timer.start()
 
 func initialize(container, turret_pos, projectile_container):
 	container.add_child(self)
@@ -41,11 +35,6 @@ func _physics_process(delta):
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
-		
-	if !path.empty():
-		var next_point:Vector2 = to_local(path.front())
-		velocity.x += clamp(velocity.x + ((next_point - position).normalized().x * speed , -max_speed, max_speed)
-		
 
 
 func notify_hit(_amount):
@@ -71,6 +60,3 @@ func _on_DetectionArea_body_exited(body):
 		target = null
 		set_physics_process(false)
 
-func on_IdleTimer_timeout():
-	var point:Vector2 = Vector2(rand_range(-wandering_range.x, wandering_range.x), rand_range(-wandering_range.y, wandering_range.y))
-	path = pathfinding.get_simple_path(global_position, global_position + point)

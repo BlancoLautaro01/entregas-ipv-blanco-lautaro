@@ -4,7 +4,6 @@ extends "res://entities/AbstractState.gd"
 func handle_input(event:InputEvent):
 	if event.is_action_pressed("move_left") || event.is_action_pressed("move_right"):
 		emit_signal("finished", "walk")
-	# Aca falta otro if
 
 
 func update(delta:float):
