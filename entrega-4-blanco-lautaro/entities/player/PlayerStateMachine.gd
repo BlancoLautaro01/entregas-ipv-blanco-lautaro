@@ -4,6 +4,8 @@ extends "res://entities/AbstractStateMachine.gd"
 func _ready():
 	states_map = {
 		"idle": $Idle,
+		"jump": $Jump,
+		"dead": $Dead,
 		"walk": $Walk
 	}
 
