@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/states/WalkState.gd" type="Script" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://entities/player/Cannon.gd" type="Script" id=4]
 [ext_resource path="res://entities/player/PlayerProjectile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player/states/IdleState.gd" type="Script" id=6]
-[ext_resource path="res://assets/textures/player.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/player/girl_spritesheet.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/cannon.png" type="Texture" id=8]
 [ext_resource path="res://entities/player/states/DeadState.gd" type="Script" id=9]
 [ext_resource path="res://entities/player/states/JumpState.gd" type="Script" id=10]
@@ -15,6 +15,42 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 31.6034
 height = 24.6237
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 0.8
+loop = true
+step = 0.041
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.041, 0.082, 0.123, 0.164, 0.205, 0.246, 0.287, 0.328, 0.369, 0.41, 0.451, 0.492, 0.533, 0.574, 0.615, 0.656, 0.697, 0.738 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 44, 43, 42, 41, 40 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Walk"
+length = 0.8
+loop = true
+step = 0.041
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.041, 0.082, 0.123, 0.164, 0.205, 0.246, 0.287, 0.328, 0.369, 0.41, 0.451, 0.492, 0.533, 0.574, 0.615, 0.656, 0.697, 0.738, 0.779 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95 ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -43,10 +79,15 @@ dash_time = 0.4
 speed_multiplier = 4.0
 
 [node name="Body" type="Sprite" parent="."]
-scale = Vector2( 1, 1.35954 )
+position = Vector2( 15.791, 0 )
+scale = Vector2( 0.3, 0.28 )
 texture = ExtResource( 7 )
+hframes = 15
+vframes = 8
+frame = 43
 
 [node name="Cannon" type="Sprite" parent="."]
+position = Vector2( 0, -38 )
 texture = ExtResource( 8 )
 script = ExtResource( 4 )
 projectile_scene = ExtResource( 5 )
@@ -55,6 +96,7 @@ projectile_scene = ExtResource( 5 )
 position = Vector2( 15, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.156136 )
 shape = SubResource( 1 )
 
 [node name="FloorRaycasts" type="Node2D" parent="."]
@@ -70,3 +112,7 @@ cast_to = Vector2( 0, 5 )
 [node name="FloorRaycast3" type="RayCast2D" parent="FloorRaycasts"]
 position = Vector2( 15, 0 )
 cast_to = Vector2( 0, 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 3 )
+anims/Walk = SubResource( 2 )
