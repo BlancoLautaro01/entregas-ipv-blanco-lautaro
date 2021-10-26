@@ -7,7 +7,7 @@
 [ext_resource path="res://entities/player/PlayerProjectile.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player/states/IdleState.gd" type="Script" id=6]
 [ext_resource path="res://assets/textures/player/girl_spritesheet.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/cannon.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/player/raygunPurpleBig.png" type="Texture" id=8]
 [ext_resource path="res://entities/player/states/DeadState.gd" type="Script" id=9]
 [ext_resource path="res://entities/player/states/JumpState.gd" type="Script" id=10]
 [ext_resource path="res://entities/player/states/DashState.gd" type="Script" id=11]
@@ -16,7 +16,7 @@
 radius = 31.6034
 height = 24.6237
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Idle"
 length = 0.8
 loop = true
@@ -34,8 +34,7 @@ tracks/0/keys = {
 "values": [ 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 44, 43, 42, 41, 40 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Walk"
+[sub_resource type="Animation" id=3]
 length = 0.8
 loop = true
 step = 0.041
@@ -87,7 +86,8 @@ vframes = 8
 frame = 43
 
 [node name="Cannon" type="Sprite" parent="."]
-position = Vector2( 0, -38 )
+position = Vector2( 0, -39.432 )
+scale = Vector2( 0.709721, 0.729203 )
 texture = ExtResource( 8 )
 script = ExtResource( 4 )
 projectile_scene = ExtResource( 5 )
@@ -114,5 +114,5 @@ position = Vector2( 15, 0 )
 cast_to = Vector2( 0, 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 3 )
-anims/Walk = SubResource( 2 )
+anims/Idle = SubResource( 2 )
+anims/Walk = SubResource( 3 )
