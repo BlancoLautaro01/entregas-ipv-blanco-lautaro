@@ -7,6 +7,8 @@ onready var detection_area = $DetectionArea
 
 onready var state_machine = $StateMachine
 
+onready var animated_sprite:AnimatedSprite = $AnimatedSprite
+
 export (PackedScene) var projectile_scene
 
 var target
@@ -33,6 +35,7 @@ func fire():
 			projectile_container = get_parent()
 		proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
 
+
 func _can_see_target()->bool:
 	if target == null:
 		return false
@@ -50,6 +53,10 @@ func notify_hit(amount):
 	state_machine.notify_hit(amount)
 
 
+func _play_animation(anim_name:String):
+	animated_sprite.play(anim_name)
+
+
 func _remove():
 	hide()
 	collision_layer = 0
@@ -60,8 +67,6 @@ func _on_DetectionArea_body_entered(body):
 	state_machine.notify_body_entered(body)
 
 
-
 func _on_DetectionArea_body_exited(body):
 	state_machine.notify_body_exited(body)
-
-
+	

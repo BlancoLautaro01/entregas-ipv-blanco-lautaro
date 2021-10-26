@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="entrega-5-blanco-lautaro"
+config/name="entrega-6-blanco-lautaro"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
