@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/states/WalkState.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://entities/player/states/DashState.gd" type="Script" id=11]
 [ext_resource path="res://assets/textures/player/raygunPurpleBig.png" type="Texture" id=12]
 [ext_resource path="res://assets/audio/sfx/PlayerAttack.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/audio/sfx/Leaves1.ogg" type="AudioStream" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "dead"
@@ -95,6 +96,35 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 47, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath("PlayerInteraction")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+}, {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerInteraction:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -144,7 +174,7 @@ texture = SubResource( 5 )
 offset = Vector2( 50, 0 )
 hframes = 15
 vframes = 8
-frame = 30
+frame = 94
 
 [node name="Slime" type="Sprite" parent="Body"]
 position = Vector2( -2.52264, -144.634 )
@@ -182,3 +212,6 @@ position = Vector2( 15, 0 )
 cast_to = Vector2( 0, 5 )
 
 [node name="PlayerSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="PlayerInteraction" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
