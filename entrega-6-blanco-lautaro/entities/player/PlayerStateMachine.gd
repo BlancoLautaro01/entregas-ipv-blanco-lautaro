@@ -16,3 +16,6 @@ func notify_hit(amount):
 	print(PlayerData.current_health)
 	if PlayerData.current_health == 0:
 		_change_state("dead")
+		get_parent()._stream_and_play(get_parent().dead_sfx)
+	else:
+		get_parent()._stream_and_play(get_parent().hit_sfx)

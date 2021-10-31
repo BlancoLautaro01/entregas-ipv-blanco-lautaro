@@ -25,6 +25,7 @@ export (float) var FRICTION_WEIGHT:float = 0.1
 export (int) var gravity = 30
 export (AudioStream) var fire_sfx
 export (AudioStream) var hit_sfx
+export (AudioStream) var dead_sfx
 
 var projectile_container
 
@@ -89,7 +90,6 @@ func _apply_movement():
 
 
 func notify_hit(amount):
-	self._stream_and_play(hit_sfx)
 	state_machine.notify_hit(amount)
 
 
