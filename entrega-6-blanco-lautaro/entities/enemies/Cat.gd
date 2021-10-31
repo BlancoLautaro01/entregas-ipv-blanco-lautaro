@@ -7,10 +7,12 @@ onready var detection_area = $DetectionArea
 onready var remove_anim_player = $RemoveAnimPlayer
 
 onready var body_sprite:AnimatedSprite = $Body
+onready var cat_sfx = $CatSfx
 
 onready var state_machine = $StateMachine
 
 export (PackedScene) var projectile_scene
+export (AudioStream) var fire_sfx
 
 var target
 var projectile_container
@@ -35,7 +37,8 @@ func fire():
 		if projectile_container == null:
 			projectile_container = get_parent()
 		proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
-
+		self._fire_audio()
+		
 func _can_see_target()->bool:
 	if target == null:
 		return false
@@ -74,3 +77,8 @@ func _on_DetectionArea_body_exited(body):
 
 func _on_Body_animation_finished():
 	state_machine._on_animation_finished(body_sprite.animation)
+	
+
+func _fire_audio():
+	cat_sfx.stream = fire_sfx
+	cat_sfx.play()
