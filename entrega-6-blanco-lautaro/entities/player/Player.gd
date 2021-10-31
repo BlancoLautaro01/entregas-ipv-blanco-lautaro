@@ -24,6 +24,7 @@ export (int) var jump_speed = 1000
 export (float) var FRICTION_WEIGHT:float = 0.1
 export (int) var gravity = 30
 export (AudioStream) var fire_sfx
+export (AudioStream) var hit_sfx
 
 var projectile_container
 
@@ -77,7 +78,7 @@ func _handle_cannon_actions():
 			projectile_container = get_parent()
 			cannon.projectile_container = projectile_container
 		cannon.fire()
-		self._fire_audio()
+		self._stream_and_play(fire_sfx)
 
 
 func _apply_movement():
@@ -88,6 +89,7 @@ func _apply_movement():
 
 
 func notify_hit(amount):
+	self._stream_and_play(hit_sfx)
 	state_machine.notify_hit(amount)
 
 
@@ -116,6 +118,6 @@ func _play_animation(animation_name:String, should_restart:bool = true, playback
 		player_animation.play(animation_name)
 
 
-func _fire_audio():
-	player_sfx.stream = fire_sfx
+func _stream_and_play(sfx):
+	player_sfx.stream = sfx
 	player_sfx.play()
